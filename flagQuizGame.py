@@ -15,6 +15,7 @@ BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BROWN = (245, 199, 140)
+YELLOW = (239, 242, 22)
 # Set up display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Flag Quiz Game")
@@ -86,14 +87,17 @@ def draw_game(flag, options, score, timer):
     screen.fill(BROWN)
     flag["draw"]()
     
-    option1_rect = pygame.draw.rect(screen, GREEN, [100, 450, 200, 60])
-    option2_rect = pygame.draw.rect(screen, GREEN, [500, 450, 200, 60])
+    question = font.render(f"Which country flag is this?", True, BLACK)
+    screen.blit(question, (250, 150))
+    
+    option1_rect = pygame.draw.rect(screen, YELLOW, [100, 450, 200, 60])
+    option2_rect = pygame.draw.rect(screen, YELLOW, [500, 450, 200, 60])
 
     option1_text = font.render(options[0], True, BLACK)
     option2_text = font.render(options[1], True, BLACK)
     
-    screen.blit(option1_text, (option1_rect.x + 20, option1_rect.y + 10))
-    screen.blit(option2_text, (option2_rect.x + 20, option2_rect.y + 10))
+    screen.blit(option1_text, (option1_rect.x + 30, option1_rect.y + 20))
+    screen.blit(option2_text, (option2_rect.x + 30, option2_rect.y + 20))
     
     score_text = font.render(f"Score: {score}", True, BLACK)
     screen.blit(score_text, (50, 50))
@@ -107,7 +111,7 @@ def draw_game(flag, options, score, timer):
 def show_final_score(score):
     screen.fill(BROWN)
     final_score_text = font.render(f"Final Score: {score}", True, BLACK)
-    screen.blit(final_score_text, (250, 200))
+    screen.blit(final_score_text, (320, 200))
 
     restart_rect = pygame.draw.rect(screen, GREEN, [200, 350, 150, 60])
     exit_rect = pygame.draw.rect(screen, RED, [450, 350, 150, 60])
@@ -115,8 +119,8 @@ def show_final_score(score):
     restart_text = font.render("Restart", True, BLACK)
     exit_text = font.render("Exit", True, BLACK)
 
-    screen.blit(restart_text, (restart_rect.x + 20, restart_rect.y + 10))
-    screen.blit(exit_text, (exit_rect.x + 50, exit_rect.y + 10))
+    screen.blit(restart_text, (restart_rect.x + 20, restart_rect.y + 20))
+    screen.blit(exit_text, (exit_rect.x + 50, exit_rect.y + 20))
     
     pygame.display.flip()
     return restart_rect, exit_rect
@@ -176,6 +180,6 @@ def main():
                 elif exit_rect.collidepoint(pos):
                     pygame.quit()
                     return
-
+                                
 # Run the game
 main()
