@@ -1,6 +1,6 @@
 # Project Overview
 
-<img src="quiz_game.png" alt="National Flag Game" width="500" height="600">
+<img src="quiz_game.png" alt="National Flag Game" width="300" height="400">
 
 This simple game is a flag recognition quiz game.
 - run flagQuizGame.py to play the game.
